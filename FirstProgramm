@@ -77,10 +77,10 @@ public class Main {
 // Класс с его конструкторами //
 
 public class Person{
-    String name;
-    int age;
-    String TelephoneModel;
-    String PhoneNumber;
+    public String name;
+    public int age;
+    public String TelephoneModel;
+    public String PhoneNumber;
 
     Person(String name, int age, String TelephoneModel, String PhoneNumber){
         this.name = name;
