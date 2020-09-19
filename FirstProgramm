@@ -108,7 +108,7 @@ public class Person{
 // Функция создания человека
     void MakePerson(){
         Scanner scr = new Scanner(System.in);
-        System.out.println("Процесс создания первого человека: ");
+        System.out.println("Процесс создания человека: ");
         System.out.println("Введите имя: ");
         String name = scr.next();
         this.name = name;
