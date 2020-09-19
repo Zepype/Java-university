@@ -1,0 +1,150 @@
+package com.company;
+import  java.util.Scanner;
+public class Main {
+    private static Person[] Massive;
+    public static void main(String[] args) {
+        Scanner scr = new Scanner(System.in);
+        System.out.println("Введите кол-во человек для заданной программы: ");
+        int PeopleCount = scr.nextInt();
+
+         Massive = new Person[PeopleCount];
+
+        for(int i = 0; i < PeopleCount; i++) {
+            System.out.println("Человек под номером:  " + (i+1));
+
+            Massive[i].MakePerson();                                                    
+        }
+
+        System.out.println("Список данных о пользователях: ");
+        for(int i = 0; i < PeopleCount; i++) {
+            Massive[i].InfoAboutPeople();
+        }
+
+
+
+        // Кейс с выбором функция для программы //
+        System.out.println("Процесс создания успешен! Выберите дальнейшую функцию для выполнения: | 1. Изменить номер пользователя | 2. Сравнение по имени | 3. Покинуть программу |");
+        int ChooseFunction = scr.nextInt() ;
+        switch (ChooseFunction){
+            case 1:
+                System.out.println("Выберите пользователя для изменения его номера телефона:  ");
+                int PeopleRaw = scr.nextInt();
+                switch(PeopleRaw){
+                    case 1:
+                        System.out.println("Вы выбрали "+ PeopleRaw +"-го человека  "+Massive[PeopleRaw-1].name + ". Введите новый номер телефона: ");
+                        String newNumber = scr.next();
+                        Massive[PeopleRaw-1].PhoneNumberChanger(newNumber);
+                        System.out.println("Новый номер: ");
+                        Massive[PeopleRaw-1].InfoAboutPeople();
+                        break;
+                    case 2:
+                        System.out.println("Вы выбрали "+ PeopleRaw +"-го человека "+Massive[PeopleRaw-1].name + ". Введите новый номер телефона : ");
+                        String newNumber2 = scr.next();
+                        Massive[PeopleRaw-1].PhoneNumberChanger(newNumber2);
+                        System.out.println("Новый номер: ");
+                        Massive[PeopleRaw-1].InfoAboutPeople();
+                        break;
+                    case 3:
+                        System.out.println("Вы выбрали "+ PeopleRaw +"-го человека "+Massive[PeopleRaw-1].name + ". Введите новый номер телефона: ");
+                        String newNumber3 = scr.next();
+                        Massive[PeopleRaw-1].PhoneNumberChanger(newNumber3);
+                        System.out.println("Новый номер: ");
+                        Massive[PeopleRaw-1].InfoAboutPeople();
+                        break;
+
+                    default:
+                        break;
+                }
+            case 2:
+                System.out.println("Введите номер человека для сравнения: ");
+                int CompareNum = scr.nextInt();
+                System.out.println("Введите номер человека для сравнения с предыдущим:  ");
+                int CompareNum2= scr.nextInt();
+                if(Massive[CompareNum-1].equals(Massive[CompareNum2-1])){
+                    System.out.println("Идентичность установлена");
+                }else{
+                    System.out.println("Идентичность некорректна");
+                }
+                break;
+            case 3: break;
+        }
+
+
+
+    }
+
+
+// Класс с его конструкторами //
+
+public class Person{
+    String name;
+    int age;
+    String TelephoneModel;
+    String PhoneNumber;
+
+    Person(String name, int age, String TelephoneModel, String PhoneNumber){
+        this.name = name;
+        this.age =age;
+        this.TelephoneModel = TelephoneModel;
+        this.PhoneNumber = PhoneNumber;
+    }
+
+    Person(){
+        this.name = "none";
+        this.age = 0;
+        this.TelephoneModel = "none";
+        this.PhoneNumber = "none";
+    }
+
+
+
+// Функция изменения номера человека
+    public void PhoneNumberChanger(String PhoneNumber){
+        this.PhoneNumber = PhoneNumber;
+
+    }
+
+
+// Функция создания человека
+    void MakePerson(){
+        Scanner scr = new Scanner(System.in);
+        System.out.println("Процесс создания первого человека: ");
+        System.out.println("Введите имя: ");
+        String name = scr.next();
+        this.name = name;
+        System.out.println("Введите возраст: ");
+        int age = scr.nextInt();
+        this.age = age;
+        System.out.println("Введите модель телефона: ");
+        String TelephoneModel = scr.next();
+        this.TelephoneModel = TelephoneModel;
+        System.out.println("Введите номер телефона: ");
+        String PhoneNumber = scr.next();
+        this.PhoneNumber = PhoneNumber;
+
+    }
+// Функция вывода информации о человеке
+    void InfoAboutPeople(){
+        System.out.println("Имя: " + this.name +","+"Возраст: " + this.age + ","+"Модель телефона: " + this.TelephoneModel + ","+"Номер телефона: " + this.PhoneNumber);
+    }
+// Проверка номера телефона //
+           public boolean NumberChecker() {
+        if ((PhoneNumber.length() == 12) && (this.PhoneNumber.substring(0,1)).equals("+")) {
+            System.out.println("Телефонный номер корректен");
+            return true;
+        } else {
+            System.out.println("Телефонный номер некорректен");
+            return false;
+        }
+           }
+// Функция сравнения по имени
+    boolean Equaling(Person person){
+        if(this.name.equals(person.name)){
+
+            return true;
+        }else{
+
+            return false;
+        }
+    }
+    }}
