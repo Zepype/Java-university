@@ -1,0 +1,124 @@
+package com.company;
+import java.util.Scanner;
+
+public class Main {                                            // Switch в цикле //
+
+    public static void main(String[] args) {             
+
+        Scanner scr = new Scanner(System.in);
+        System.out.println("Введите число секций в университете: ");
+        int Count = scr.nextInt();
+        for (int i=0; i<=Count ; i++)
+        {
+            switch(i) { case 1: System.out.println("Секция номер 1 "); break;
+                case 2: System.out.println("Секция номер 2 "); break;
+                case 3: System.out.println("Секция номер 3 "); break;
+                case 4: System.out.println("Секция номер 4 ");  break;
+                default: break;
+
+            }
+
+
+
+
+
+
+
+
+        }
+
+       Vampires test = new Vampires();
+        test.vamp();
+        Example b = new Example();
+        
+                                       // Передаем значение переменной в функцию //
+        b.function(10);
+
+
+
+
+
+    }
+                                                     // Класс с функцией Фиббоначи //
+    public static class Example{
+
+
+        void function(int x){
+            int [] arr = new int[x];
+            arr[0] = 1;
+            arr[1] = 1;
+            for (int i = 2; i < arr.length; ++i) {
+                arr[i] = arr[i - 1] + arr[i - 2];
+            }
+            for (int i = 0; i < arr.length; ++i) {
+                System.out.println(arr[i]);
+            }
+        }
+
+        Example(){
+
+
+        }
+    }
+                                                                             // Вампиры //
+    public static class Vampires {
+        int FirstMassive[] = new int[10000];
+        int SecondMassive[] = new int[12];
+        int thousands,hundreads,tens,firsts;
+        void vamp(){ //заполенение массива всеми 4-х значными числами
+            for (int i=1000,j=0;i<10000;i++,j++){
+
+                FirstMassive[j] = i;
+
+            }
+            for(int x : FirstMassive){ //Проход по всему массиву 4-х значных
+                int marker = 0;//переменная для проверки количества нулей
+                thousands = x / 1000; //Разложение каждого 4-х значного числа на цифры
+                hundreads = (x - 1000*thousands)/100;//
+                tens = (x - 1000*thousands - 100*hundreads)/10;//
+                firsts = x - 1000*thousands - 100*hundreads - 10*tens;//
+                if(hundreads==0){ // проверка количества нулей
+                    marker++;
+                }
+                if(tens==0){
+                    marker++;
+                }
+                if(firsts==0){
+                    marker++;
+                }
+                if(marker>1){ //если нулей больше 1 - число не обрабатываем дальше
+                    continue;
+                }
+                else{
+                    SecondMassive[0]=(firsts*10+tens)*(hundreads*10+thousands); //произведение всех возможных двухзначных чисел из цифр 4-х значного
+                    SecondMassive[1]=(firsts*10+tens)*(thousands*10+hundreads);
+                    SecondMassive[2]=(tens*10+firsts)*(hundreads*10+thousands);
+                    SecondMassive[3]=(tens*10+firsts)*(thousands*10+hundreads);
+                    SecondMassive[4]=(firsts*10+hundreads)*(tens*10+thousands);
+                    SecondMassive[5]=(firsts*10+tens)*(thousands*10+tens);
+                   SecondMassive[6]=(hundreads*10+firsts)*(tens*10+thousands);
+                    SecondMassive[7]=(hundreads*10+firsts)*(thousands*10+tens);
+                    SecondMassive[8]=(firsts*10+thousands)*(tens*10+hundreads);
+                    SecondMassive[9]=(firsts*10+thousands)*(hundreads*10+tens);
+                    SecondMassive[10]=(thousands*10+firsts)*(tens*10+hundreads);
+                    SecondMassive[11]=(thousands*10+firsts)*(hundreads*10+tens);
+                    //проверка равно хоть одно произведение или нет
+                    if(x==SecondMassive[0]||x==SecondMassive[1]||x==SecondMassive[2]||x==SecondMassive[3]||x==SecondMassive[4]||x==SecondMassive[5]||x==SecondMassive[6]||x==SecondMassive[7]||x==SecondMassive[8]||x==SecondMassive[9]||x==SecondMassive[10]||x==SecondMassive[11]){
+                        System.out.println(x);                                         // Вывод чисел //
+                    }
+
+                }
+
+            }
+
+        }
+      Vampires (){
+
+      }
+
+
+
+
+    }
+
+    }
