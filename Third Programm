@@ -1,0 +1,109 @@
+package com.company;
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner scr = new Scanner(System.in);
+        Letter value = new Letter();
+        Letter value1 = new Letter("Duuuude, omg", 25);
+
+
+        Dog command = new Dog();
+
+        command.bark();
+        command.bark("hi");
+        command.bark(1);
+
+
+        Money choice = new Money(MoneyTypes.RUB, "Россия");
+        System.out.println("Валютой из "+choice.country+" является " + choice.type);
+
+        switch(choice.type){
+            case RUB:
+                System.out.println("Рубль");
+            case EUR:
+                System.out.println("Евро");
+            case USD:
+                System.out.println("Доллар");
+            case GRN:
+                System.out.println("Гривна");
+            case PND:
+                System.out.println("Фунт");
+            case SEK:
+                System.out.println("Крона"); }
+
+                      }
+
+
+
+
+
+
+     // Перегрузка конструкторов //
+     class Letter {
+        private String s;
+        private int i;
+        private int b;
+
+
+
+
+        Letter (){
+            s = "Hello";
+            i = 10;
+            b = 5;
+
+        }
+        Letter (String s, int i){
+            this.s = s;
+            this.i = i;
+
+        }
+
+
+
+}
+
+
+         // Перегрузка метода bark() //
+         
+         
+class Dog{
+    void bark (String s){
+        System.out.println("Гав");
+    }
+    void bark (int b){
+        System.out.println("Плакает");
+    }
+    void bark ()
+    { System.out.println("Аууууу"); }
+
+          }
+
+
+
+
+
+   // Создание enum-списка //
+
+class Money{
+
+    MoneyTypes type;
+    String country;
+
+    Money   (MoneyTypes type, String country){
+
+        this.type = type;
+        this.country = country; }
+
+
+           }
+
+
+enum MoneyTypes {
+    RUB, USD, EUR, PND, GRN, SEK
+
+                 }
+
+}
