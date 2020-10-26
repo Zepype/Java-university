@@ -1,0 +1,125 @@
+package com.company;
+
+import java.io.File;
+import java.util.Scanner;
+
+ /* Проверка условия на наличие ошибки */
+public class Main {
+
+    public static void main(String[] args)  throws FileNotFoundException {
+
+        try {
+            System.out.println("Введите первое число: ");
+            Scanner scan = new Scanner(System.in);
+            int a = scan.nextInt();
+            System.out.println("Введите второе число: ");
+            int b = scan.nextInt();
+            int c = a / b;
+            System.out.println(c);
+
+        } catch (ArithmeticException e) {
+            System.out.println("На ноль делить нельзя");
+
+
+        }
+        
+/* Работа с файлами */
+
+        Scanner scr = new Scanner(System.in);
+        PrintWriter wr = new PrintWriter("First.txt");
+        try  {
+           int arr[];
+        arr = new int[100];
+           for (int i = 0; i < 100; i++){
+              arr[i] = (int) (Math.random()* 1000);
+               wr.print("\n");
+               
+               wr.print(i+  " : " +  (arr[i] + 1));
+           }
+           
+           
+       } catch (Exception e) {
+           System.out.println(e.getMessage());
+       }
+       
+        wr.close();
+        
+        System.out.println("Индекс под номером : ");
+        String index = sc.next();
+        File fly = new File("First.txt");
+        Scanner scann = new Scanner(fly);
+        while(scann.hasNext()){
+        
+            String line = scann.next();
+         
+            String[] parts = line.split("-");
+            String part1 = parts[0];
+            String part2 = parts[1];
+            if (part1.equals(index)){
+                System.out.println(part2);
+            }
+        }
+
+
+
+
+
+     /* Распределение файлов */
+
+        Scanner sc = new Scanner(System.in);
+        PrintWriter wr1 = new PrintWriter("f1.txt");
+        PrintWriter wr2 = new PrintWriter("f2.txt");
+        String wordsForFirst = "Hello ";
+        String wordsForSecond = "world!";
+
+        try{
+
+                wr1.print(wordsForFirst);
+                wr2.print(wordsForSecond);
+
+
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+
+       wr1.close();
+        wr2.close();
+
+        reverseString(wordsForFirst);
+        reverseString(wordsForSecond);
+
+
+//        //File file1 = new File("t1.txt");
+//        Scanner sc1 = new Scanner(file1);
+//        File file2 = new File("t2.txt");
+//        Scanner sc2 = new Scanner(file2);            
+
+
+        System.out.println("Меняем файлы местами? 1-да, 2-нет");
+        int choice = sc.nextInt();
+
+        PrintWriter pw1 = new PrintWriter("t1.txt");
+        PrintWriter pw2 = new PrintWriter("t2.txt");
+
+
+
+        switch (choice){
+            case 1:
+
+                pw1.print(reverseString(wordsForSecond));
+                pw2.print(reverseString(wordsForFirst));
+                pw1.close();
+                pw2.close();
+
+            case 2:
+               return;
+        }
+
+    }
+    
+    
+
+    public static String reverseString(String str) {
+        return new StringBuilder(str).reverse().toString();
+    }
+}
