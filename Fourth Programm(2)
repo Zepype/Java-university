@@ -1,0 +1,60 @@
+package com.company;
+import java.io.*;
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) throws FileNotFoundException {
+
+        Scanner scan = new Scanner(System.in);
+        PrintWriter wr1 = new PrintWriter("t1.txt");
+        PrintWriter wr2 = new PrintWriter("t2.txt");
+        String firstWords = " Hello ";
+        String secondWords = " world! ";
+
+        try{
+
+            wr1.print(firstWords);
+            wr2.print(secondWords);
+
+
+        } catch (Exception e) {
+            System.out.println("Error" +e);
+        }
+
+        wr1.close();
+        wr2.close();
+
+        reverseString(firstWords);
+        reverseString(secondWords);
+
+
+
+
+
+        System.out.println("Меняем файлы местами? 1 : Да, 2 : Нет ");
+        int index = scan.nextInt();
+
+        PrintWriter pw1 = new PrintWriter("t1.txt");
+        PrintWriter pw2 = new PrintWriter("t2.txt");
+
+
+
+        switch (index){
+            case 1:
+
+                pw1.print(reverseString(secondWords));
+                pw2.print(reverseString(firstWords));
+                pw1.close();
+                pw2.close();
+
+            case 2:
+                return;
+        }
+
+    }
+
+    public static String reverseString(String str) {
+        return new StringBuilder(str).reverse().toString();
+    }
+}
