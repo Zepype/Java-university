@@ -1,0 +1,112 @@
+package com.company;
+import java.util.Random;
+
+public class Main {
+
+    public static void main(String[] args) {
+         /* Цикл для создания 5-ти рандомных чисел */
+        Random random = new Random();
+
+        for (int i=0; i<5; i++) {
+
+
+            int min = 0;
+            int max = 10000;
+            int diff = max - min;
+            int Random_variable = random.nextInt(diff + 1) + min;
+            System.out.print("[" + i + "]" + " : " + Random_variable + "\n");
+            RewritingToWords(Random_variable);
+
+
+        }
+
+
+/*Функция разбива числа на множетили*/
+    }
+    static void RewritingToWords (int num){
+
+        int[] arr = new int [4];
+        int div = 1000; // Делитель на разряды
+        int var = num; // Наше число переданное из цикла выше
+        int rest; // остаток
+
+
+        for (int i=0; i<4; i++) {
+            rest = var / div;
+            arr[i] = rest;
+            var = var-rest*div;
+            div = div/10; }
+
+            switch (arr[0])
+            {
+                case 1: System.out.print(" Одна тысяча "); break;
+                case 2: System.out.print(" Две тысячи" ); break;
+                case 3: System.out.print(" Три тысячи "); break;
+                case 4: System.out.print(" Четыре тысячи "); break;
+                case 5: System.out.print(" Пять тысяч "); break;
+                case 6: System.out.print(" Шесть тысяч "); break;
+                case 7: System.out.print(" Семь тысяч "); break;
+                case 8: System.out.print(" Восемь тысяч "); break;
+                case 9: System.out.print(" Девять тысяч "); break;
+                default:break;
+            }
+            switch (arr[1]){
+                case 1: System.out.print(" сто "); break;
+                case 2: System.out.print(" двести "); break;
+                case 3: System.out.print(" триста "); break;
+                case 4: System.out.print(" четыреста "); break;
+                case 5: System.out.print(" пятьсот "); break;
+                case 6: System.out.print(" шестьсот "); break;
+                case 7: System.out.print(" семьсот "); break;
+                case 8: System.out.print(" восемьсот "); break;
+                case 9: System.out.print(" девятьсот "); break;
+                default:break;
+            }
+        switch (arr[2])
+        {
+            case 1:
+                // Числа от 10 до 19
+                switch (arr[3]) {
+                    case 0 -> System.out.print(" десять ");
+                    case 1 -> System.out.print(" одиннадцать ");
+                    case 2 -> System.out.print(" двенадцать ");
+                    case 3 -> System.out.print(" тринадцать ");
+                    case 4 -> System.out.print(" четырнадцать ");
+                    case 5 -> System.out.print(" пятнадцать ");
+                    case 6 -> System.out.print(" шестнадцать ");
+                    case 7 -> System.out.print(" семнадцать ");
+                    case 8 -> System.out.print(" восемнадцать ");
+                    case 9 -> System.out.print(" девятнадцать ");
+                }
+                arr[3] = 0;
+
+                break;
+            case 2: System.out.print(" двадцать "); break;
+            case 3: System.out.print(" тридцать "); break;
+            case 4: System.out.print(" сорок "); break;
+            case 5: System.out.print(" пятьдесят "); break;
+            case 6: System.out.print(" шестьдесят "); break;
+            case 7: System.out.print(" семьдесят "); break;
+            case 8: System.out.print(" восемьдесят "); break;
+            case 9: System.out.print(" девяносто "); break;
+            default: break;
+        }
+
+            switch (arr[3]){
+                case 1: System.out.print(" один "); break;
+                case 2: System.out.print(" два "); break;
+                case 3: System.out.print(" три "); break;
+                case 4: System.out.print(" четыре "); break;
+                case 5: System.out.print(" пять "); break;
+                case 6: System.out.print(" шесть "); break;
+                case 7: System.out.print(" семь "); break;
+                case 8: System.out.print(" восемь "); break;
+                case 9: System.out.print(" девять "); break;
+                default:break;
+            }
+
+
+
+        }
+
+    }
