@@ -1,0 +1,103 @@
+package com.company;
+import java.util.Scanner;
+import java.text.DecimalFormat;
+
+public class Main {
+
+    public static void main(String[] args) {
+        System.out.println(" Введите  число: ");
+        Scanner scr = new Scanner(System.in);
+        long number = scr.nextLong();
+
+        System.out.println( transform(number));
+    }
+
+    private static final String[] oneToNineteen = {     // Массив чисел от 0 до 19 //
+            " ", " one ", " two ", " three ", " four ", " five",
+            " six ", " seven ", " eight ", " nine ", " ten ",
+            " eleven ", " twelve ", " thirteen ", " fourteen ", " fifteen ",
+            " sixteen ", " seventeen ", " eighteen ", " nineteen" };
+
+    private static final String[] tenToNinety = {     // Массив чисел от 0 до 90 (десятки) //
+            " ", " ten ", " twenty ", " thirty ", " forty ", " fifty ",
+            " sixty ", " seventy ", " eighty ", " ninety " };
+
+    public static String convertLessThanOneThousand(int num) { // Поразрядное разбиение
+        String num2;
+        if (num % 100 < 20){
+            num2 = oneToNineteen[num % 100];
+            num /= 100;
+        } else {
+            num2 = oneToNineteen[num % 10];
+            num /= 10;
+
+            num2 = oneToNineteen[num % 10] + num2;
+            num /= 10;
+        }
+        if (num == 0) return num2;
+        return oneToNineteen[num] + " hundred " + num2;
+    }
+
+    public static String transform(long number) {
+
+        if (number == 0) { return " zero "; }
+
+        String secondNumber;
+        String mask = "000000000000";
+        DecimalFormat df = new DecimalFormat(mask);
+        secondNumber = df.format(number);
+
+        int billions = Integer.parseInt(secondNumber.substring(0,3)); // Парсинг на разряды
+
+        int millions  = Integer.parseInt(secondNumber.substring(3,6));
+
+        int hundredThousands = Integer.parseInt(secondNumber.substring(6,9));
+
+        int thousands = Integer.parseInt(secondNumber.substring(9,12));
+
+        String billionNum;                 // Switch конструкции для разделения на миллиарды/миллионы/тысячи
+        switch (billions) {
+            case 0:
+                billionNum = "";
+                break;
+            case 1 :
+                billionNum = convertLessThanOneThousand(billions) + " billion ";
+                break;
+            default :
+                billionNum = convertLessThanOneThousand(billions) + " billion ";
+        }
+        String result =  billionNum;
+
+        String millionNum;
+        switch (millions) {
+            case 0:
+                millionNum = "";
+                break;
+            case 1 :
+                millionNum = convertLessThanOneThousand(millions) + " million ";
+                break;
+            default :
+                millionNum = convertLessThanOneThousand(millions)
+                        + " million ";
+        }
+        result += millionNum;
+
+        String oneHundredThousandNum;
+        switch (hundredThousands) {
+            case 0:
+                oneHundredThousandNum = "";
+                break;
+            case 1 :
+                oneHundredThousandNum = "one thousand ";
+                break;
+            default :
+                oneHundredThousandNum = convertLessThanOneThousand(hundredThousands) + " thousand ";
+        }
+        result += oneHundredThousandNum;
+
+        String thousandNum;
+        thousandNum = convertLessThanOneThousand(thousands);
+        result += thousandNum;
+        return result.replaceAll("^\\s+", "").replaceAll("\\b\\s{2,}\\b", " ");
+    }
+}
