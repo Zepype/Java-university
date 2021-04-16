@@ -1,0 +1,36 @@
+package com.company;
+
+
+public class Main {
+
+    public static void main(String[] args) {
+	String cat1 = "Tom";
+	String cat2 = "Tom";
+
+	System.out.println(cat1.equals(cat2));
+	System.out.println(cat1==cat2);
+	System.out.println("===============================");
+
+	Cat a = new Cat();
+	a.cat = "Tom";
+	Cat a2 = new Cat();
+	a2.cat ="Tom";
+
+	System.out.println(a==a2);
+	System.out.println(a.equals(a2));
+
+	Cat a3 = new Cat();
+	a3.cat = "T"+"o"+"m";
+
+	System.out.println("================================");
+	System.out.println(a3==a2);
+	System.out.println(a3.equals(a2));
+
+
+    }
+}
+
+class Cat{
+	public String cat;
+
+}
