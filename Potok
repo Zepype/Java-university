@@ -1,0 +1,60 @@
+package com.company;
+import java.util.*;
+
+public class Main {
+
+    public static final int n =10;
+
+    public static ArrayDeque<Integer> deque = new ArrayDeque<>();
+
+
+
+    public static void main(String[] args) {
+        System.out.println("Enter number: " );
+         Scanner scanner = new Scanner(System.in);
+        int number = scanner.nextInt();
+
+        deque.addLast(number); // ?
+
+        secondThread secondThread = new secondThread();
+        secondThread.start();
+
+        while (true){
+            number=scanner.nextInt();
+            try{
+                if(number==deque.peekLast()+1) deque.addLast(number);
+                else System.out.println("Ошибка!");
+            }catch (EmptyStackException e){
+                break;
+            }
+            System.out.println("\n"+deque+"\n");
+        }
+    }
+
+
+
+
+    public static class secondThread extends Thread{
+        @Override
+        public void run(){
+
+            while (!deque.isEmpty()&&deque.size()<n){
+
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                if(deque.size()>=n){
+                    break;}
+                deque.pollLast();
+                System.out.println("\n"+deque+"\n");
+
+            }
+            System.out.println("Game is over!");
+            System.exit(0);
+        }
+    }
+
+}
