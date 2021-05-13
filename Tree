@@ -1,0 +1,145 @@
+package com.company;
+import java.util.Stack;
+
+public class Main {
+
+    public static void main(String[] args) {
+    Tree tree = new Tree();
+    tree.insertNode(5);
+    tree.insertNode(12);
+    tree.insertNode(2);
+    tree.insertNode(11);
+    tree.insertNode(6);
+    tree.printTree();
+
+    }
+}
+
+class Node{
+    private int value;
+    private Node left;
+    private Node right;
+
+    public int getValue(){
+        return this.value;
+    }
+
+    public void setValue(final int value){
+        this.value = value;
+    }
+
+    public Node getLeft()
+    { return this.left;}
+    public void setLeft(final Node left){
+        this.left =left;
+    }
+    public Node getRight(){
+        return this.right;
+    }
+    public void setRight(final Node right){
+        this.right =right;
+    }
+    @Override
+    public String toString(){
+        return "Node{" +
+                "value=" + value +
+                ", left =" + left +
+                ", right = " + right+
+                '}';
+    }
+}
+
+
+class Tree {
+    private Node root;
+    public Tree(){
+        root =null;
+    }
+
+    public Node findNodeByValue(int value) {
+        Node currentNode = root;
+        while (currentNode.getValue() != value) {
+            if (value < currentNode.getValue()) {
+                currentNode = currentNode.getLeft();
+            } else {
+                currentNode = currentNode.getRight();
+            }
+            if (currentNode == null) {
+                return null;
+            }
+
+            }
+        return currentNode;
+        }
+
+    public void insertNode(int value) {
+        Node newNode = new Node();
+        newNode.setValue(value);
+        if (root== null) { // если корневой узел не существует
+            root = newNode;
+        }
+        else { // корневой узел занят
+            Node currentNode = root;
+            Node parentNode;
+            while (true) //
+            {
+                parentNode = currentNode;
+                if(value == currentNode.getValue()) {
+                }
+                else  if (value < currentNode.getValue()) { // Влево
+                    currentNode = currentNode.getLeft();
+                    if (currentNode == null){
+                        parentNode.setLeft(newNode);
+                        return;
+                    }
+                }
+                else { // Направо
+                    currentNode = currentNode.getRight();
+                    if (currentNode == null) {
+                        parentNode.setRight(newNode);
+                        return;
+                    }
+                }
+            }
+        }
+    }
+
+    public void printTree() { // Вывод дерева
+        Stack Stack = new Stack(); 
+        Stack.push(root);
+        int distance = 25; // начальное значение расстояния между элементами
+        boolean isRowEmpty = false;
+        String separator = "-----------------------------------------------------------------";
+        System.out.println(separator);// 
+        while (isRowEmpty == false) {
+            Stack localStack = new Stack(); 
+            isRowEmpty = true;
+
+            for (int j = 0; j < distance; j++)
+                System.out.print(' ');
+            while (Stack.isEmpty() == false) { 
+                Node temp = (Node) Stack.pop(); 
+                if (temp != null) {
+                    System.out.print(temp.getValue()); 
+                    localStack.push(temp.getLeft()); 
+                    localStack.push(temp.getRight());
+                    if (temp.getLeft() != null ||
+                            temp.getRight() != null)
+                        isRowEmpty = false;
+                }
+                else {
+                    System.out.print("__"); // - если элемент пустой
+                    localStack.push(null);
+                    localStack.push(null);
+                }
+                for (int j = 0; j < distance * 2 - 2; j++)
+                    System.out.print(' ');
+            }
+            System.out.println();
+            distance /= 2;// 
+            while (localStack.isEmpty() == false)
+                Stack.push(localStack.pop()); 
+        }
+        System.out.println(separator); 
+    }
+    }
